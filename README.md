@@ -1,29 +1,36 @@
-# Artisan de Confiance du 13 — Site vitrine
+# Réseaux Artisans de Confiance 13 — Site vitrine
 
-Site vitrine statique (une seule page, navigation par ancres) de l'apporteur
-d'affaires « Artisan de Confiance du 13 ». Conçu pour être déployé en statique
-sur **Vercel** (rapide, gratuit, bon référencement).
+Site vitrine **multi-pages statique** (HTML/CSS/JS, sans framework), optimisé SEO,
+prêt à déployer sur **Vercel**.
 
-## Contenu
+## Pages
+- `index.html` — Accueil (prologue animé, hero, 3 piliers, concept, réalisations, CTA)
+- `realisations.html` — `/realisations`
+- `a-propos.html` — `/a-propos`
+- `contact.html` — `/contact`
+- `styles.css`, `app.js` — communs à toutes les pages
+- `images/` — 21 photos en WebP optimisé (chargées à la demande)
+- `sitemap.xml`, `robots.txt`, `vercel.json`
 
-- `index.html` — tout le site (HTML + CSS + JS + photos en base64, un seul fichier autonome).
-- `robots.txt` — autorise l'indexation par les moteurs de recherche.
+## SEO (déjà en place)
+- Une **vraie URL par page**, avec titre + meta description propres.
+- **Données structurées** JSON-LD (ProfessionalService, zone = Bouches-du-Rhône).
+- **Images WebP** légères + `alt` descriptifs + `loading="lazy"` → page rapide.
+- `sitemap.xml`, `robots.txt`, canonical, Open Graph.
+- `vercel.json` → URLs propres (`/contact` et non `/contact.html`).
 
-## Déploiement sur Vercel
+## Déploiement Vercel
+1. `git add . && git commit -m "..."` puis pousser sur GitHub.
+2. vercel.com → New Project → importer le dépôt → Framework **Other** → Deploy.
+3. En ligne sur une URL `*.vercel.app`.
+4. Domaine : Settings → Domains → ajouter le domaine (DNS fournis par Vercel).
 
-1. Pousser ce dépôt sur GitHub.
-2. Sur vercel.com : **New Project** → importer le dépôt.
-3. Framework preset : **Other** (site statique, aucun build). Laisser tout par défaut → Deploy.
-4. Le site est en ligne sur une URL `*.vercel.app`.
-5. **Domaine** : quand le nom est confirmé, Project → Settings → Domains → ajouter
-   `artisandeconfiance13.fr` (Vercel donne les enregistrements DNS à créer chez le registrar).
-
-## À faire ensuite
-
-- **Formulaire de contact** : aujourd'hui il valide côté navigateur mais n'envoie pas
-  encore les demandes. À brancher (Brevo, ou un petit endpoint) en même temps que l'emailing.
-- **Coordonnées** : remplacer les `[Téléphone]` / `[Email]` du pied de page par les vraies.
-- **Lien Espace Chantier** : le bouton du footer pointe vers l'appli Fly ; le faire pointer
-  vers le sous-domaine `espace.artisandeconfiance13.fr` une fois le domaine en place.
-- **SEO** : ajouter la balise `<link rel="canonical">` et un `sitemap.xml` une fois le domaine connu.
-# Artisan2Confiance_13-vitrine
+## À finaliser (quand tu auras les infos)
+- **Domaine** : remplacer `https://reseauxartisansdeconfiance13.fr` dans `index.html`,
+  `realisations.html`, `a-propos.html`, `contact.html` (balises canonical / og:url /
+  JSON-LD) **et** dans `sitemap.xml` + `robots.txt`, par le domaine définitif.
+- **Coordonnées** : remplacer `[Téléphone]` / `[Email]` (pied de page + page Contact).
+- **Formulaire de contact** : validation OK côté navigateur ; l'envoi réel reste à
+  brancher (Brevo ou petit endpoint), avec l'emailing de l'outil.
+- **Photos** : ce sont des visuels d'exemple ; les remplacer par les vraies réalisations
+  (dans `images/`, même noms, format WebP de préférence).
