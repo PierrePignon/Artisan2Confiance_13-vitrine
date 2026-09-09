@@ -92,6 +92,17 @@
       el.classList.toggle('err', bad); if(bad) ok=false;
     });
     if(!ok) return;
-    f.hidden=true; var s=document.getElementById('contact-success'); if(s){ s.hidden=false; window.scrollTo(0,0); }
+    var data={}; new FormData(f).forEach(function(v,k){ data[k]=v; });
+    var btn=f.querySelector('[type=submit]'); var note=f.querySelector('.submit .note');
+    if(btn){ btn.disabled=true; btn.textContent='Envoi…'; }
+    fetch('/api/contact',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(data)})
+      .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(j){ return {ok:r.ok && j.ok, j:j}; }); })
+      .then(function(res){
+        if(res.ok){ f.hidden=true; var s=document.getElementById('contact-success'); if(s){ s.hidden=false; window.scrollTo(0,0); } }
+        else { if(btn){ btn.disabled=false; btn.textContent='Envoyer ma demande'; }
+          if(note){ note.textContent='Envoi impossible pour le moment — réessayez, ou écrivez-nous à contact@reseauxartisansdeconfiance13.fr'; note.style.color='#c8552e'; } }
+      })
+      .catch(function(){ if(btn){ btn.disabled=false; btn.textContent='Envoyer ma demande'; }
+        if(note){ note.textContent='Envoi impossible pour le moment — réessayez plus tard.'; note.style.color='#c8552e'; } });
   }); }
 })();
