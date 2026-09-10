@@ -59,8 +59,8 @@
   </div></section>
   <div class="wrap contact-wrap">
     <div class="contact-info reveal in">
-      <div class="line"><span class="k">Téléphone</span><span class="v">[Téléphone]</span></div>
-      <div class="line"><span class="k">Email</span><span class="v">[Email]</span></div>
+      <div class="line"><span class="k">Téléphone</span><span class="v"><a href="tel:+33637759206">06 37 75 92 06</a></span></div>
+      <div class="line"><span class="k">Email</span><span class="v"><a href="mailto:contact@reseauxartisansdeconfiance13.fr">contact@reseauxartisansdeconfiance13.fr</a></span></div>
       <div class="line"><span class="k">Zone d'intervention</span><span class="v">Bouches-du-Rhône · 13</span></div>
       <div class="line"><span class="k">Délai de réponse</span><span class="v">Sous 48 heures</span></div>
     </div>
@@ -71,8 +71,16 @@
         <div><label>Email</label><input name="email" type="email" required></div>
         <div><label>Téléphone</label><input name="tel"></div>
         <div><label>Type de projet</label><select name="type" required><option value="">Choisir…</option><option>Salle de bain</option><option>Cuisine</option><option>Escalier</option><option>Bibliothèque / boiseries</option><option>Rénovation complète</option><option>Autre</option></select></div>
+        <div><label>Surface approximative</label><select name="surface"><option value="">Optionnel</option><option>Moins de 10 m²</option><option>10 à 25 m²</option><option>25 à 50 m²</option><option>Plus de 50 m²</option><option>Je ne sais pas encore</option></select></div>
+        <div><label>Niveau de finition</label><select name="finition"><option value="">Optionnel</option><option>Haut de gamme</option><option>Prestige / sur-mesure</option><option>À définir ensemble</option></select></div>
         <div class="full"><label>Budget estimé</label><select name="budget"><option value="">Préfère ne pas préciser</option><option>Moins de 50 000 €</option><option>50 000 – 150 000 €</option><option>150 000 – 300 000 €</option><option>Plus de 300 000 €</option></select></div>
         <div class="full"><label>Votre projet</label><textarea name="message" required placeholder="Décrivez votre projet, le lieu, vos attentes…"></textarea></div>
+        <div class="full photos-field"><label>Photos du lieu <span class="opt">— optionnel, jusqu'à 3</span></label>
+          <label for="photos" class="photos-drop"><span class="photos-plus">+</span> Ajouter des photos</label>
+          <input id="photos" type="file" accept="image/*" multiple hidden>
+          <div class="photos-hint">Un aperçu de la pièce nous aide à orienter votre projet vers les bons artisans.</div>
+          <div id="photos-list" class="photos-list"></div>
+        </div>
         <div class="submit"><button type="submit" class="btn">Envoyer ma demande</button><span class="note">Confidentiel — aucune donnée transmise à des tiers.</span></div>
       </form>
       <div id="contact-success" hidden><h3>Merci.</h3><p>Votre demande est bien notée. Nous revenons vers vous sous 48 heures.</p></div>
@@ -88,7 +96,7 @@
       </div>
       <div style="display:flex; gap:64px; flex-wrap:wrap;">
         <div class="col"><span class="lbl">Navigation</span><a href="index.html">Accueil</a><a href="realisations.html">Réalisations</a><a href="a-propos.html">À propos</a><a href="contact.html">Contact</a></div>
-        <div class="col"><span class="lbl">Contact</span><span>[Téléphone]</span><span>[Email]</span><span>Bouches-du-Rhône · 13</span></div>
+        <div class="col"><span class="lbl">Contact</span><span>06 37 75 92 06</span><span>contact@reseauxartisansdeconfiance13.fr</span><span>Bouches-du-Rhône · 13</span></div>
         <div class="col"><span class="lbl">Suivi de projet</span><a href="https://espace-chantier-adc13.fly.dev" target="_blank" rel="noopener">Espace Chantier ↗</a><span style="font-size:12px; color:var(--faint); max-width:170px; line-height:1.6;">Accès réservé aux chantiers en cours (lien personnel).</span></div>
       </div>
     </div>

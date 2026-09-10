@@ -82,20 +82,67 @@
     mm.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ mm.hidden=true; tog.classList.remove('open'); document.body.style.overflow=''; }); });
   }
 
-  // Formulaire de contact (validation côté client ; l'envoi réel sera branché ensuite)
+  // Formulaire de contact — validation, photos (redimensionnées côté client), envoi
   var f=document.getElementById('contact-form');
-  if(f){ f.addEventListener('submit', function(e){
-    e.preventDefault(); var ok=true;
-    f.querySelectorAll('[required]').forEach(function(el){
-      var bad=!String(el.value).trim();
-      if(el.type==='email' && !bad) bad=!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(el.value);
-      el.classList.toggle('err', bad); if(bad) ok=false;
-    });
-    if(!ok) return;
-    var data={}; new FormData(f).forEach(function(v,k){ data[k]=v; });
-    var btn=f.querySelector('[type=submit]'); var note=f.querySelector('.submit .note');
-    if(btn){ btn.disabled=true; btn.textContent='Envoi…'; }
-    fetch('/api/contact',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(data)})
+  if(f){
+    var photosInput=document.getElementById('photos');
+    var photosList=document.getElementById('photos-list');
+    var chosen=[]; // File[] retenus (max 3)
+
+    function renderChips(){
+      if(!photosList) return; photosList.innerHTML='';
+      chosen.forEach(function(file,i){
+        var chip=document.createElement('span'); chip.className='photo-chip';
+        chip.appendChild(document.createTextNode(file.name.length>28?file.name.slice(0,25)+'…':file.name));
+        var rm=document.createElement('span'); rm.className='rm'; rm.textContent='×'; rm.title='Retirer';
+        rm.addEventListener('click',function(){ chosen.splice(i,1); renderChips(); });
+        chip.appendChild(rm); photosList.appendChild(chip);
+      });
+    }
+    if(photosInput){
+      photosInput.addEventListener('change', function(){
+        [].slice.call(photosInput.files||[]).forEach(function(file){
+          if(/^image\//.test(file.type) && chosen.length<3) chosen.push(file);
+        });
+        photosInput.value='';
+        if(chosen.length>=3){ var d=f.querySelector('.photos-drop'); if(d) d.style.display='none'; }
+        renderChips();
+      });
+    }
+    function resizeImage(file, maxDim, quality){
+      return new Promise(function(resolve){
+        if(!/^image\//.test(file.type)) return resolve(null);
+        var img=new Image(); var url=URL.createObjectURL(file);
+        img.onload=function(){
+          var w=img.width,h=img.height, scale=Math.min(1,maxDim/Math.max(w,h));
+          var cw=Math.max(1,Math.round(w*scale)), ch=Math.max(1,Math.round(h*scale));
+          var c=document.createElement('canvas'); c.width=cw; c.height=ch;
+          c.getContext('2d').drawImage(img,0,0,cw,ch);
+          URL.revokeObjectURL(url);
+          try{ resolve(c.toDataURL('image/jpeg',quality).split(',')[1]); }catch(e){ resolve(null); }
+        };
+        img.onerror=function(){ URL.revokeObjectURL(url); resolve(null); };
+        img.src=url;
+      });
+    }
+    f.addEventListener('submit', function(e){
+      e.preventDefault(); var ok=true;
+      f.querySelectorAll('[required]').forEach(function(el){
+        var bad=!String(el.value).trim();
+        if(el.type==='email' && !bad) bad=!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(el.value);
+        el.classList.toggle('err', bad); if(bad) ok=false;
+      });
+      if(!ok) return;
+      var data={}; new FormData(f).forEach(function(v,k){ data[k]=v; });
+      var btn=f.querySelector('[type=submit]'); var note=f.querySelector('.submit .note');
+      if(btn){ btn.disabled=true; btn.textContent=chosen.length?'Préparation des photos…':'Envoi…'; }
+      Promise.all(chosen.slice(0,3).map(function(file,i){
+        return resizeImage(file,1400,0.72).then(function(b64){ return b64?{name:'photo-'+(i+1)+'.jpg', content:b64}:null; });
+      })).then(function(atts){
+        data.attachments=atts.filter(Boolean);
+        if(btn) btn.textContent='Envoi…';
+        return fetch('/api/contact',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(data)});
+      })
       .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(j){ return {ok:r.ok && j.ok, j:j}; }); })
       .then(function(res){
         if(res.ok){ f.hidden=true; var s=document.getElementById('contact-success'); if(s){ s.hidden=false; window.scrollTo(0,0); } }
@@ -104,5 +151,6 @@
       })
       .catch(function(){ if(btn){ btn.disabled=false; btn.textContent='Envoyer ma demande'; }
         if(note){ note.textContent='Envoi impossible pour le moment — réessayez plus tard.'; note.style.color='#c8552e'; } });
-  }); }
+    });
+  }
 })();
