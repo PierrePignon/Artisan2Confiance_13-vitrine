@@ -41,6 +41,23 @@
   .nav .links a.item{color:var(--mute); position:relative;}
   .nav .links a.item::after{content:''; position:absolute; left:0; bottom:-5px; width:0; height:1px; background:var(--amber); transition:width .4s ease;}
   .nav .links a.item:hover{color:var(--cream);} .nav .links a.item:hover::after{width:100%;}
+  .nav .links a.item-espace{color:var(--faint); border:1px solid var(--line); padding:7px 13px; border-radius:2px; transition:border-color .3s, color .3s;}
+  .nav .links a.item-espace::after{display:none;}
+  .nav .links a.item-espace:hover{color:var(--cream); border-color:var(--amber);}
+  .nav .links a.item-espace .ext{font-size:11px;}
+
+  /* Méthode */
+  .method{padding:130px 0; border-top:1px solid var(--line);}
+  .method .head{max-width:780px; margin-bottom:70px;}
+  .method .head h2{font-size:clamp(30px,5vw,52px); line-height:1.06; margin-top:16px;}
+  .method .head .intro{margin-top:24px; font-size:16px; color:var(--mute); max-width:580px; line-height:1.75;}
+  .method .steps{display:grid; grid-template-columns:repeat(4,1fr); gap:38px;}
+  .method .step{padding-top:24px; border-top:1px solid var(--line);}
+  .method .s-num{font-family:'Space Mono',monospace; font-size:13px; letter-spacing:0.12em; color:var(--amber); margin-bottom:20px;}
+  .method .step h3{font-family:'Playfair Display',serif; font-size:23px; font-weight:500; color:var(--cream); margin:0 0 13px;}
+  .method .step p{font-size:14.5px; color:var(--mute); line-height:1.68; margin:0;}
+  @media(max-width:900px){ .method{padding:90px 0;} .method .steps{grid-template-columns:1fr 1fr; gap:30px 34px;} .method .head{margin-bottom:52px;} }
+  @media(max-width:560px){ .method .steps{grid-template-columns:1fr;} }
   .btn{display:inline-flex; align-items:center; gap:10px; font-family:'Hanken Grotesk',sans-serif; font-weight:500; font-size:13.5px; letter-spacing:0.06em; text-transform:uppercase;
     padding:13px 26px; border:1px solid var(--amber); background:var(--amber); color:var(--noir-2); transition:all .4s ease; cursor:pointer;}
   .btn:hover{background:transparent; color:var(--amber);}
