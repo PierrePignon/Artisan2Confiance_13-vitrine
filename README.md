@@ -1,36 +1,102 @@
 # Réseaux Artisans de Confiance 13 — Site vitrine
 
-Site vitrine **multi-pages statique** (HTML/CSS/JS, sans framework), optimisé SEO,
-prêt à déployer sur **Vercel**.
+Site **multi-pages statique** (HTML / CSS / JS, sans framework), optimisé SEO,
+déployé sur **Vercel**.
 
 ## Pages
-- `index.html` — Accueil (prologue animé, hero, 3 piliers, concept, réalisations, CTA)
-- `realisations.html` — `/realisations`
-- `a-propos.html` — `/a-propos`
-- `contact.html` — `/contact`
-- `styles.css`, `app.js` — communs à toutes les pages
-- `images/` — 21 photos en WebP optimisé (chargées à la demande)
-- `sitemap.xml`, `robots.txt`, `vercel.json`
 
-## SEO (déjà en place)
-- Une **vraie URL par page**, avec titre + meta description propres.
-- **Données structurées** JSON-LD (ProfessionalService, zone = Bouches-du-Rhône).
-- **Images WebP** légères + `alt` descriptifs + `loading="lazy"` → page rapide.
-- `sitemap.xml`, `robots.txt`, canonical, Open Graph.
-- `vercel.json` → URLs propres (`/contact` et non `/contact.html`).
+| URL | Fichier | Rôle |
+|---|---|---|
+| `/` | `index.html` | Accueil — prologue, piliers, méthode, métiers, réalisations, FAQ |
+| `/ebenisterie-sur-mesure-aix-marseille` | idem `.html` | Landing métier — ébénisterie & agencement |
+| `/tadelakt-marseille-aix` | idem `.html` | Landing métier — tadelakt & enduits à la chaux |
+| `/ferronnerie-art-bouches-du-rhone` | idem `.html` | Landing métier — ferronnerie d'art |
+| `/taille-de-pierre-marbrerie-provence` | idem `.html` | Landing métier — taille de pierre & marbrerie |
+| `/realisations` | `realisations.html` | Galerie |
+| `/a-propos` | `a-propos.html` | Positionnement |
+| `/contact` | `contact.html` | Formulaire |
+| `/mentions-legales` | `mentions-legales.html` | Mentions légales + RGPD |
+| — | `404.html` | Page d'erreur (servie automatiquement par Vercel) |
 
-## Déploiement Vercel
-1. `git add . && git commit -m "..."` puis pousser sur GitHub.
-2. vercel.com → New Project → importer le dépôt → Framework **Other** → Deploy.
-3. En ligne sur une URL `*.vercel.app`.
-4. Domaine : Settings → Domains → ajouter le domaine (DNS fournis par Vercel).
+Communs : `styles.css`, `app.js`, `images/` (21 WebP + `og-card.jpg`),
+`sitemap.xml`, `robots.txt`, `vercel.json`, `api/contact.js`.
 
-## À finaliser (quand tu auras les infos)
-- **Domaine** : remplacer `https://reseauxartisansdeconfiance13.fr` dans `index.html`,
-  `realisations.html`, `a-propos.html`, `contact.html` (balises canonical / og:url /
-  JSON-LD) **et** dans `sitemap.xml` + `robots.txt`, par le domaine définitif.
-- **Coordonnées** : remplacer `[Téléphone]` / `[Email]` (pied de page + page Contact).
-- **Formulaire de contact** : validation OK côté navigateur ; l'envoi réel reste à
-  brancher (Brevo ou petit endpoint), avec l'emailing de l'outil.
-- **Photos** : ce sont des visuels d'exemple ; les remplacer par les vraies réalisations
-  (dans `images/`, même noms, format WebP de préférence).
+## SEO en place
+
+**Contenu**
+- 4 landings métier de 850 à 950 mots, une par requête commerciale
+  (« tadelakt Marseille », « ébéniste sur mesure Aix », etc.).
+- Une FAQ de 5 questions par landing + 6 sur l'accueil, calées sur les questions
+  réellement tapées (prix au m², délais, différences entre métiers, entretien, normes).
+- Bloc « zone d'intervention » listant 16 communes du 13 sur chaque landing.
+- Maillage interne : menu, footer, section métiers de l'accueil, liens croisés entre landings.
+
+**Technique**
+- Une URL propre par page (`cleanUrls`), title + meta description uniques et calibrés
+  (≤ 62 / ≤ 162 caractères), canonical, Open Graph et Twitter Card complets.
+- Données structurées unifiées en un seul graphe JSON-LD par page :
+  `ProfessionalService` (entité unique, `@id` sur l'accueil), `WebSite`, `WebPage`,
+  `BreadcrumbList`, `Service` et `FAQPage` — les pages internes référencent l'entité
+  au lieu de la dupliquer.
+- `sitemap.xml` avec `lastmod`, `robots.txt`, page 404 réelle.
+- Images WebP + `alt` descriptifs + dimensions + `loading="lazy"` ;
+  preload et `fetchpriority="high"` sur l'image LCP de l'accueil.
+- En-têtes Vercel : cache long sur `/images`, `stale-while-revalidate` sur CSS/JS,
+  HSTS, `nosniff`, `Referrer-Policy`, `Permissions-Policy`.
+- Espace Chantier (appli privée) en `rel="nofollow"`.
+
+## Déploiement
+
+1. `git add . && git commit -m "..."` puis `git push`.
+2. Vercel redéploie automatiquement le dépôt lié.
+
+---
+
+# À faire
+
+## 1. Bloquant — le site ne peut pas ranker sans ça
+
+- [ ] **Domaine définitif.** Tout le code pointe vers `https://reseauxartisansdeconfiance13.fr`
+      (canonical, og:url, JSON-LD, sitemap, robots). Acheter le domaine et le brancher
+      dans Vercel → Settings → Domains, ou faire un rechercher/remplacer global si le
+      domaine change.
+- [ ] **Google Business Profile.** C'est le premier levier local, devant le site :
+      créer la fiche (catégorie « Entreprise de rénovation » ou « Coordinateur de travaux »),
+      zone de chalandise = Bouches-du-Rhône, photos, horaires, lien vers le site.
+- [ ] **Google Search Console.** Le fichier de vérification `google364addc9b7971b7b.html`
+      est déjà en place : valider la propriété, soumettre `sitemap.xml`, demander
+      l'indexation des 4 landings métier.
+- [ ] **Compléter les mentions légales** : statut juridique, siège, SIREN/SIRET, TVA,
+      directeur de publication, médiateur de la consommation. Les `[à compléter]` sont
+      visibles en ligne aujourd'hui.
+
+## 2. À valider avec le client
+
+- [ ] **Les fourchettes de prix des FAQ.** J'ai mis des ordres de grandeur marché
+      (tadelakt 120–250 €/m², ébénisterie 900–2 500 €/ml, verrière 700–1 400 €/m²).
+      À faire relire par le client : ce sont les siens qui doivent figurer, ou les
+      supprimer s'il ne veut pas afficher de prix.
+- [ ] **Formulaire de contact** : validation navigateur OK, `api/contact.js` présent —
+      vérifier que l'envoi réel fonctionne en production (Brevo ou endpoint) et qu'un
+      mail arrive bien.
+- [ ] **Photos réelles.** Les 21 visuels sont des images d'illustration, et c'est écrit
+      sur le site. Les remplacer par de vraies réalisations dès les premières livraisons
+      (même noms de fichiers, WebP).
+
+## 3. Prochains gains SEO
+
+- [ ] **4 landings métier supplémentaires**, sur le même gabarit, pour les métiers déjà
+      listés sur l'accueil mais sans page : plâtrerie & staff, menuiserie sur mesure,
+      peinture décorative, maçonnerie. ~1 h par page maintenant que le modèle existe.
+- [ ] **Pages « ville »** pour les 3 plus gros bassins (Marseille, Aix, Aubagne), à ne
+      faire que si le contenu est réellement différent d'une ville à l'autre — sinon
+      Google les traite comme du duplicata.
+- [ ] **Avis clients.** Les avis Google alimentent à la fois la fiche et un éventuel
+      balisage `AggregateRating` sur le site. À ne baliser que sur des avis réels.
+- [ ] **Backlinks locaux** : annuaires d'artisans du 13, architectes et décorateurs
+      partenaires, chambre de métiers, presse locale déco.
+- [ ] **Mesure d'audience.** Aucun outil n'est installé (et c'est ce que disent les
+      mentions légales). Si suivi souhaité : Plausible ou Vercel Analytics, sans cookie,
+      et mettre à jour la section Cookies en conséquence.
+- [ ] **Vérifier les Core Web Vitals** une fois en ligne (PageSpeed Insights). Le poste
+      le plus lourd restant est le chargement des Google Fonts.
