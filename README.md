@@ -12,6 +12,10 @@ déployé sur **Vercel**.
 | `/tadelakt-marseille-aix` | idem `.html` | Landing métier — tadelakt & enduits à la chaux |
 | `/ferronnerie-art-bouches-du-rhone` | idem `.html` | Landing métier — ferronnerie d'art |
 | `/taille-de-pierre-marbrerie-provence` | idem `.html` | Landing métier — taille de pierre & marbrerie |
+| `/menuiserie-sur-mesure-bouches-du-rhone` | idem `.html` | Landing métier — menuiserie du bâti |
+| `/platrerie-staff-decoratif-marseille-aix` | idem `.html` | Landing métier — plâtrerie & staff |
+| `/peinture-decorative-patines-provence` | idem `.html` | Landing métier — peinture décorative |
+| `/maconnerie-restauration-bati-ancien-13` | idem `.html` | Landing métier — maçonnerie & bâti ancien |
 | `/realisations` | `realisations.html` | Galerie |
 | `/a-propos` | `a-propos.html` | Positionnement |
 | `/contact` | `contact.html` | Formulaire |
@@ -24,12 +28,16 @@ Communs : `styles.css`, `app.js`, `images/` (21 WebP + `og-card.jpg`),
 ## SEO en place
 
 **Contenu**
-- 4 landings métier de 850 à 950 mots, une par requête commerciale
-  (« tadelakt Marseille », « ébéniste sur mesure Aix », etc.).
+- **8 landings métier** de 880 à 970 mots, une par requête commerciale
+  (« tadelakt Marseille », « ébéniste sur mesure Aix », « maçon bâti ancien 13 », etc.) —
+  une par ligne de la section « Nos métiers » de l'accueil, aucune ligne morte.
 - Une FAQ de 5 questions par landing + 6 sur l'accueil, calées sur les questions
-  réellement tapées (prix au m², délais, différences entre métiers, entretien, normes).
+  réellement tapées (prix au m², délais, différences entre métiers, entretien, normes,
+  autorisations d'urbanisme).
 - Bloc « zone d'intervention » listant 16 communes du 13 sur chaque landing.
-- Maillage interne : menu, footer, section métiers de l'accueil, liens croisés entre landings.
+- Maillage interne : menu, footer (les 8 savoir-faire sur chaque page), section métiers
+  de l'accueil, liens croisés entre landings voisines.
+- ~10 300 mots au total sur le site.
 
 **Technique**
 - Une URL propre par page (`cleanUrls`), title + meta description uniques et calibrés
@@ -73,7 +81,8 @@ Communs : `styles.css`, `app.js`, `images/` (21 WebP + `og-card.jpg`),
 ## 2. À valider avec le client
 
 - [ ] **Les fourchettes de prix des FAQ.** J'ai mis des ordres de grandeur marché
-      (tadelakt 120–250 €/m², ébénisterie 900–2 500 €/ml, verrière 700–1 400 €/m²).
+      (tadelakt 120–250 €/m², ébénisterie 900–2 500 €/ml, verrière 700–1 400 €/m²,
+      corniche en staff 60–180 €/ml, peinture décorative 80–200 €/m²).
       À faire relire par le client : ce sont les siens qui doivent figurer, ou les
       supprimer s'il ne veut pas afficher de prix.
 - [ ] **Formulaire de contact** : validation navigateur OK, `api/contact.js` présent —
@@ -81,13 +90,12 @@ Communs : `styles.css`, `app.js`, `images/` (21 WebP + `og-card.jpg`),
       mail arrive bien.
 - [ ] **Photos réelles.** Les 21 visuels sont des images d'illustration, et c'est écrit
       sur le site. Les remplacer par de vraies réalisations dès les premières livraisons
-      (même noms de fichiers, WebP).
+      (même noms de fichiers, WebP). Les 4 nouvelles landings réutilisent des visuels
+      existants faute de mieux — celle de la maçonnerie (`img16`) est la moins pertinente
+      et mérite une photo dédiée en priorité.
 
 ## 3. Prochains gains SEO
 
-- [ ] **4 landings métier supplémentaires**, sur le même gabarit, pour les métiers déjà
-      listés sur l'accueil mais sans page : plâtrerie & staff, menuiserie sur mesure,
-      peinture décorative, maçonnerie. ~1 h par page maintenant que le modèle existe.
 - [ ] **Pages « ville »** pour les 3 plus gros bassins (Marseille, Aix, Aubagne), à ne
       faire que si le contenu est réellement différent d'une ville à l'autre — sinon
       Google les traite comme du duplicata.

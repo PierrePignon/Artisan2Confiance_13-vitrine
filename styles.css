@@ -407,3 +407,10 @@
   .doc ul{padding-left:20px;}
   .doc .cta-row{margin-top:40px;}
   @media(max-width:700px){ .doc{padding:120px 0 80px;} }
+
+
+  /* footer : colonne savoir-faire sur deux colonnes */
+  footer .col-sf .sf-cols{display:grid; grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:11px 34px; align-content:start;}
+  footer .col-sf .sf-cols a{display:block;}
+  @media(max-width:700px){ footer .col-sf .sf-cols{grid-template-columns:1fr;} }
