@@ -303,7 +303,7 @@ p{margin:0}
 <!-- HERO -->
 <section id="top">
   <div class="herofull">
-    <img class="bg" src="images/img16.webp" width="1000" height="750" fetchpriority="high" alt="Intérieur rénové haut de gamme dans les Bouches-du-Rhône">
+    <img class="bg" src="images/img-hero.webp" width="1800" height="1350" fetchpriority="high" alt="Intérieur rénové haut de gamme dans les Bouches-du-Rhône">
     <div class="scrim"></div>
     <div class="wrap hcontent">
       <span class="htrust"><span class="st">★★★★★</span> Nos clients nous recommandent</span>
@@ -416,7 +416,7 @@ p{margin:0}
       <h2>Des chantiers qui <span class="hl">parlent d'eux-mêmes</span>.</h2>
       <p>Quelques exemples de projets menés avec le réseau.</p>
     </div>
-    <div class="rgrid"><div class="rc reveal"><img class="art" src="images/img19.webp" width="1000" height="750" loading="lazy" alt="Salle de bain en marbre — Salle de bain · Aix"><div class="ov"><div class="cat">Salle de bain · Aix</div><h3>Salle de bain en marbre</h3></div></div><div class="rc reveal d1"><img class="art" src="images/img09.webp" width="1100" height="756" loading="lazy" alt="Loft ouvert & mezzanine — Rénovation complète · Marseille"><div class="ov"><div class="cat">Rénovation complète · Marseille</div><h3>Loft ouvert & mezzanine</h3></div></div><div class="rc reveal d2"><img class="art" src="images/img10.webp" width="1100" height="756" loading="lazy" alt="Cuisine marbre & laiton — Cuisine · Aix"><div class="ov"><div class="cat">Cuisine · Aix</div><h3>Cuisine marbre & laiton</h3></div></div><div class="rc reveal"><img class="art" src="images/img18.webp" width="1000" height="750" loading="lazy" alt="Séjour & cheminée — Séjour · Aubagne"><div class="ov"><div class="cat">Séjour · Aubagne</div><h3>Séjour & cheminée</h3></div></div><div class="rc reveal d1"><img class="art" src="images/img20.webp" width="1000" height="750" loading="lazy" alt="Bibliothèque sur mesure — Bureau · Aix"><div class="ov"><div class="cat">Bureau · Aix</div><h3>Bibliothèque sur mesure</h3></div></div><div class="rc reveal d2"><img class="art" src="images/img21.webp" width="1000" height="750" loading="lazy" alt="Cuisine bois sur mesure — Cuisine · Salon"><div class="ov"><div class="cat">Cuisine · Salon</div><h3>Cuisine bois sur mesure</h3></div></div></div>
+    <div class="rgrid"><div class="rc reveal"><img class="art" src="images/img19.webp" width="1000" height="750" loading="lazy" alt="Salle de bain en marbre"></div><div class="rc reveal d1"><img class="art" src="images/img09.webp" width="1100" height="756" loading="lazy" alt="Loft ouvert & mezzanine"></div><div class="rc reveal d2"><img class="art" src="images/img10.webp" width="1100" height="756" loading="lazy" alt="Cuisine marbre & laiton"></div><div class="rc reveal"><img class="art" src="images/img18.webp" width="1000" height="750" loading="lazy" alt="Séjour & cheminée"></div><div class="rc reveal d1"><img class="art" src="images/img20.webp" width="1000" height="750" loading="lazy" alt="Bibliothèque sur mesure"></div><div class="rc reveal d2"><img class="art" src="images/img21.webp" width="1000" height="750" loading="lazy" alt="Cuisine bois sur mesure"></div></div>
   </div>
 </section>
 
@@ -488,7 +488,7 @@ TRADES.forEach((t,idx)=>{const deg=idx*(360/N)-90,a=deg*Math.PI/180;const x=50+R
   const d=document.createElement('div');d.className='disc';d.style.left=x+'%';d.style.top=y+'%';d.style.background=t.c;d.innerHTML=sv(t.i);d.title=t.n;
   const lab=document.createElement('div');lab.className='lbl';lab.style.left=lx+'%';lab.style.top=ly+'%';lab.textContent=t.s;
   d.addEventListener('mouseenter',()=>{d.classList.add('act');lab.classList.add('on');});d.addEventListener('mouseleave',()=>{d.classList.remove('act');lab.classList.remove('on');});
-  d.addEventListener('click',()=>openCard(idx));wheel.appendChild(d);wheel.appendChild(lab);});
+  d.addEventListener('click',()=>{location.href=SLUGS[idx];});wheel.appendChild(d);wheel.appendChild(lab);});
 const fcard=document.getElementById('fcard');
 function openCard(i){const t=TRADES[i];document.getElementById('fhd').style.background=t.c;document.getElementById('fhicon').innerHTML=sv(t.i);document.getElementById('ftitle').textContent=t.n;document.getElementById('fdesc').textContent=t.d;document.getElementById('flink').href=SLUGS[i];fcard.classList.add('open');}
 document.getElementById('fclose').addEventListener('click',e=>{e.stopPropagation();fcard.classList.remove('open');});
