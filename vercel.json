@@ -1,33 +1,109 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/ebenisterie-sur-mesure-aix-marseille",
+      "destination": "/menuiserie",
+      "permanent": true
+    },
+    {
+      "source": "/menuiserie-sur-mesure-bouches-du-rhone",
+      "destination": "/menuiserie",
+      "permanent": true
+    },
+    {
+      "source": "/tadelakt-marseille-aix",
+      "destination": "/peinture",
+      "permanent": true
+    },
+    {
+      "source": "/taille-de-pierre-marbrerie-provence",
+      "destination": "/maconnerie",
+      "permanent": true
+    },
+    {
+      "source": "/ferronnerie-art-bouches-du-rhone",
+      "destination": "/serrurerie",
+      "permanent": true
+    },
+    {
+      "source": "/platrerie-staff-decoratif-marseille-aix",
+      "destination": "/platrerie",
+      "permanent": true
+    },
+    {
+      "source": "/peinture-decorative-patines-provence",
+      "destination": "/peinture",
+      "permanent": true
+    },
+    {
+      "source": "/maconnerie-restauration-bati-ancien-13",
+      "destination": "/maconnerie",
+      "permanent": true
+    },
+    {
+      "source": "/realisations",
+      "destination": "/#realisations",
+      "permanent": true
+    },
+    {
+      "source": "/contact",
+      "destination": "/#contact",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=(), interest-cohort=()" },
-        { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" }
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains; preload"
+        }
       ]
     },
     {
       "source": "/images/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     },
     {
       "source": "/(.*).(css|js|webp|jpg|png|svg|woff2)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400, stale-while-revalidate=604800"
+        }
       ]
     },
     {
       "source": "/sitemap.xml",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=3600" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600"
+        }
       ]
     }
   ]
