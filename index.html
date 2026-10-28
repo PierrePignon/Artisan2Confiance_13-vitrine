@@ -193,6 +193,13 @@ p{margin:0}
 .rnote{text-align:center;margin-top:28px;font-size:13px;color:var(--faint)}
 
 /* avis */
+.gproof{display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:center;background:var(--card);border:1px solid var(--line-s);border-radius:var(--r);padding:36px 40px;max-width:900px;margin:0 auto}
+.gscore{display:flex;flex-direction:column;align-items:center;gap:6px;padding-right:40px;border-right:1px solid var(--line-s)}
+.gscore .n{font-size:56px;font-weight:700;line-height:1;color:var(--ink)}
+.gscore .stars{color:var(--gold);letter-spacing:2px}
+.gscore .t{font-size:13px;color:var(--ink2)}
+.gtxt p{font-size:15.5px;color:var(--ink2);line-height:1.7;margin:0 0 18px}
+@media(max-width:700px){.gproof{grid-template-columns:1fr;padding:28px 22px;gap:22px}.gscore{padding:0 0 20px;border-right:0;border-bottom:1px solid var(--line-s)}}
 .trow{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .tq{background:var(--card);border:1px solid var(--line-s);border-radius:var(--r);padding:28px}
 .tq .stars{color:var(--gold);letter-spacing:2px;font-size:15px;margin-bottom:12px}
@@ -306,7 +313,7 @@ p{margin:0}
     <img class="bg" src="images/img-hero.webp" width="1920" height="1280" fetchpriority="high" alt="Cuisine et séjour rénovés ouverts sur une terrasse, Bouches-du-Rhône">
     <div class="scrim"></div>
     <div class="wrap hcontent">
-      <span class="htrust"><span class="st">★★★★★</span> Nos clients nous recommandent</span>
+      <span class="htrust"><span class="st">★★★★★</span> 4,9/5 sur Google pour Diego Rodriguez</span>
       <h1>Rénovez malin.<br>Votre bien vous le rendra.</h1>
       <p class="sub">Un seul interlocuteur, un réseau d'artisans de confiance, et des travaux pensés pour valoriser votre logement.</p>
       <div class="hcta">
@@ -423,13 +430,21 @@ p{margin:0}
 <!-- AVIS -->
 <section class="sec soft">
   <div class="wrap">
-    <div class="shead reveal"><span class="eyebrow">Ils ont confié leur projet</span><h2>La confiance, <span class="hl">ça se construit</span>.</h2></div>
+    <div class="shead reveal"><span class="eyebrow">La confiance, ça se vérifie</span><h2>Avant le réseau, <span class="hl">un artisan</span>.</h2></div>
+    <div class="gproof reveal">
+      <div class="gscore"><span class="n">4,9</span><span class="stars">★★★★★</span><span class="t">+50 avis Google</span></div>
+      <div class="gtxt">
+        <p>Diego Rodriguez est d'abord plombier : son entreprise, Plomberie Rodriguez Diego, est notée <b>4,9/5 par plus de 50 clients</b> sur Google. C'est cette exigence qu'il applique aux artisans qu'il sélectionne pour vos projets.</p>
+        <a class="btn g" href="https://www.google.com/maps/place/Plomberie+Rodriguez+Diego/@43.4124742,4.9776117,17z/data=!3m1!4b1!4m6!3m5!1s0x12b61f9c2c01f7d3:0xd74d45f920397ae1!8m2!3d43.4124742!4d4.9801866!16s%2Fg%2F11j30q3132?hl=fr-FR" target="_blank" rel="noopener">Lire les avis sur Google</a>
+      </div>
+    </div>
+    <!-- À réactiver avec les vrais avis des clients du réseau :
     <div class="trow">
       <div class="tq reveal"><div class="stars">★★★★★</div><p>« Exemple d'avis — un seul interlocuteur du début à la fin, et un chantier qui a tenu les délais. »</p><div class="who"><span class="av">M</span><span><b>Marie L.</b><span>Rénovation · Aix (exemple)</span></span></div></div>
       <div class="tq reveal d1"><div class="stars">★★★★★</div><p>« Exemple d'avis — Diego nous a indiqué précisément où investir. Résultat au-delà de nos attentes. »</p><div class="who"><span class="av">T</span><span><b>Thomas R.</b><span>Salle de bain · Marseille (exemple)</span></span></div></div>
       <div class="tq reveal d2"><div class="stars">★★★★★</div><p>« Exemple d'avis — un suivi clair et sans stress, tout était organisé. Je recommande. »</p><div class="who"><span class="av">S</span><span><b>Sophie B.</b><span>Cuisine · Aubagne (exemple)</span></span></div></div>
     </div>
-    <p class="gnote">À remplacer par vos vrais avis Google.</p>
+        -->
   </div>
 </section>
 
@@ -452,6 +467,12 @@ p{margin:0}
       <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" required></div>
       <div class="field"><label for="type">Type de projet</label>
         <select id="type" name="type"><option value="">Choisir…</option><option>Salle de bain</option><option>Cuisine</option><option>Rénovation complète</option><option>Extérieur / piscine</option><option>Aménagement / combles</option><option>Autre</option></select></div>
+      <div class="row">
+        <div class="field"><label for="budget">Budget envisagé <span style="color:var(--faint);font-weight:400">— optionnel</span></label>
+          <select id="budget" name="budget"><option value="">Je ne sais pas encore</option><option>Moins de 10 000 €</option><option>10 000 – 30 000 €</option><option>30 000 – 60 000 €</option><option>Plus de 60 000 €</option></select></div>
+        <div class="field"><label for="delai">Délai souhaité <span style="color:var(--faint);font-weight:400">— optionnel</span></label>
+          <select id="delai" name="delai"><option value="">Pas de contrainte</option><option>Dès que possible</option><option>Dans les 3 mois</option><option>Dans 3 à 6 mois</option><option>Plus tard</option></select></div>
+      </div>
       <div class="field full"><label for="msg">Votre projet, avec vos mots</label><textarea id="msg" name="msg" required placeholder="Décrivez ce que vous souhaitez faire, la pièce, vos attentes, votre délai…"></textarea></div>
       <div class="field full"><label>Photos ou plans <span style="color:var(--faint);font-weight:400">— optionnel</span></label>
         <label class="drop" for="files"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5M4 17v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-2"/></svg>Glissez vos photos / plans ici, ou cliquez pour les ajouter</label>
@@ -473,7 +494,7 @@ p{margin:0}
       <div><h4>Le réseau</h4><a href="#concept">Le concept</a><a href="metiers">Les métiers</a><a href="a-propos">À propos</a><a href="#realisations">Réalisations</a><a href="https://espace-chantier-adc13.fly.dev" target="_blank" rel="noopener nofollow">Espace Chantier ↗</a></div>
       <div><h4>Contact</h4><a href="tel:+33637759206">06 37 75 92 06</a><a href="mailto:contact@reseauxartisansdeconfiance13.fr">contact@reseauxartisansdeconfiance13.fr</a><h4 style="margin-top:20px">Zones</h4><p class="zones">Marseille · Aix-en-Provence · Aubagne · Salon · Martigues · tout le 13.</p></div>
     </div>
-    <div class="bottom"><span>© 2026 Réseaux Artisans de Confiance 13 · <a href="mentions-legales" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Mentions légales</a></span><span>Rénovation &amp; valorisation immobilière · Bouches-du-Rhône</span></div>
+    <div class="bottom"><span>© 2026 Réseaux Artisans de Confiance 13 · <a href="mentions-legales" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Mentions légales</a> · Site réalisé par <a href="https://lenseigneweb.fr" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-underline-offset:2px">L'enseigne</a></span><span>Rénovation &amp; valorisation immobilière · Bouches-du-Rhône</span></div>
   </div>
 </footer>
 
@@ -508,7 +529,7 @@ _f.addEventListener('submit',async e=>{e.preventDefault();if(document.getElement
  if(!nom||!email||!message){btn.textContent='Nom, email et projet requis';setTimeout(()=>btn.textContent='Envoyer ma demande',2500);return;}
  btn.disabled=true;const old=btn.textContent;btn.textContent='Envoi en cours\u2026';
  let attachments=[];for(const fl of [..._fi.files].slice(0,3)){if(fl.size<4000000){const a=await _b64(fl);if(a&&a.content)attachments.push(a);}}
- const payload={nom,email,tel:document.getElementById('tel').value.trim(),type:document.getElementById('type').value,message,attachments};
+ const payload={nom,email,tel:document.getElementById('tel').value.trim(),type:document.getElementById('type').value,budget:document.getElementById('budget').value,delai:document.getElementById('delai').value,message,attachments};
  try{const r=await fetch('/api/contact',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(payload)});
   if(r.ok){_f.innerHTML='<div class="sent"><div class="ok">\u2713</div><h3>Merci, votre demande est envoy\u00E9e.</h3><p>Diego vous recontacte rapidement pour fixer le rendez-vous.</p></div>';}
   else{btn.disabled=false;btn.textContent='Erreur \u2014 r\u00E9essayer';setTimeout(()=>btn.textContent=old,3000);}}

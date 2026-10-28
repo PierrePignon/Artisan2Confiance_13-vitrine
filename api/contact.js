@@ -8,7 +8,7 @@ module.exports = async function handler(req, res){
   // corps JSON (Vercel le parse en général ; sinon on le fait à la main)
   let body = req.body;
   if (!body || typeof body === 'string') { try { body = JSON.parse(body || '{}'); } catch(e){ body = {}; } }
-  const { nom, email, tel, type, budget, surface, finition, message, attachments, _hp } = body;
+  const { nom, email, tel, type, budget, delai, surface, finition, message, attachments, _hp } = body;
 
   // anti-spam simple : si le champ piège est rempli, on fait semblant d'accepter
   if (_hp) return res.status(200).json({ ok: true });
@@ -41,6 +41,7 @@ module.exports = async function handler(req, res){
     '<p><strong>Surface :</strong> ' + esc(surface || '—') + '</p>' +
     '<p><strong>Niveau de finition :</strong> ' + esc(finition || '—') + '</p>' +
     '<p><strong>Budget estimé :</strong> ' + esc(budget || '—') + '</p>' +
+    '<p><strong>Délai souhaité :</strong> ' + esc(delai || '—') + '</p>' +
     '<p><strong>Message :</strong><br>' + esc(message).replace(/\n/g, '<br>') + '</p>' +
     (attach ? '<p><strong>Photos jointes :</strong> ' + attach.length + '</p>' : '');
 
