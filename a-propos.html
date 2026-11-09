@@ -289,7 +289,24 @@ p{margin:0}
 .menu{gap:22px}
 .menu a.lk,.menu a.mgmt{white-space:nowrap;flex:0 0 auto}
 @media(max-width:1120px){.menu{display:none}.burger{display:block}}
-</style><link rel="canonical" href="https://reseauxartisansdeconfiance13.fr/a-propos">
+
+/* manifesto */
+.manifesto{background:var(--blue);color:#fff;text-align:center;padding:clamp(48px,8vh,82px) 0}
+.manifesto blockquote{margin:0 auto;max-width:820px;font-family:var(--fd);font-size:clamp(21px,2.8vw,31px);font-weight:700;line-height:1.32;letter-spacing:-.02em;color:#fff}
+.manifesto cite{display:block;margin-top:22px;font-style:normal;font-size:13px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--gold)}
+/* values redesign */
+.val{padding:30px 24px!important;position:relative;overflow:hidden}
+.val::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--blue)}
+.vals .val:nth-child(2n)::before{background:var(--gold)}
+.val .ic{width:52px!important;height:52px!important;border-radius:14px!important;color:#fff!important;background:var(--blue)!important;margin-bottom:16px!important}
+.vals .val:nth-child(2n) .ic{background:var(--gold)!important}
+.val .ic svg{width:25px;height:25px}
+/* contact promise card */
+.cpromise{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:var(--r);padding:24px 26px 26px}
+.cpromise .pr{display:flex;align-items:center;gap:13px;font-size:15px;color:#e6eaee;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.08);line-height:1.4}
+.cpromise .pr:last-of-type{border-bottom:0}
+.cpromise .pr i{flex:0 0 auto;width:24px;height:24px;border-radius:50%;background:var(--gold);color:#2a2008;display:grid;place-items:center;font-size:13px;font-weight:800;font-style:normal}
+.cpromise .btn{width:100%;justify-content:center;margin-top:18px;font-size:16px;padding:15px}</style><link rel="canonical" href="https://reseauxartisansdeconfiance13.fr/a-propos">
 <meta property="og:type" content="website"><meta property="og:site_name" content="Réseaux Artisans de Confiance 13">
 <meta property="og:title" content="À propos — un réseau local, pas une plateforme"><meta property="og:description" content="Une équipe d'artisans des Bouches-du-Rhône qui se connaissent et travaillent ensemble — pas une plateforme qui attribue votre chantier au premier venu.">
 <meta property="og:url" content="https://reseauxartisansdeconfiance13.fr/a-propos"><meta property="og:image" content="https://reseauxartisansdeconfiance13.fr/images/img18.webp"><meta property="og:locale" content="fr_FR">
@@ -311,6 +328,7 @@ p{margin:0}
 <section class="ahero"><img src="images/img18.webp" alt="Intérieur chaleureux rénové"><div class="sc"></div>
 <div class="wrap in"><span class="eyebrow">À propos</span><h1>Un réseau, pas une plateforme.</h1>
 <p>Derrière Artisan de Confiance, pas d'algorithme ni de standard téléphonique : une équipe d'artisans de la région qui se connaissent et travaillent ensemble depuis des années.</p></div></section>
+<section class="manifesto"><div class="wrap"><blockquote>« Je ne travaille qu'avec des artisans que j'ai rencontrés, dont j'ai vu le travail. Sur un chantier, se connaître change tout. »</blockquote><cite>Diego Rodriguez · fondateur du réseau</cite></div></section>
 
 <section class="sec"><div class="wrap"><div class="frow">
 <div class="ftx"><span class="eyebrow">Des gens qui se connaissent</span><h2>Votre chantier n'est pas confié <span class="hl">au premier venu</span>.</h2>
@@ -322,7 +340,7 @@ p{margin:0}
 <section class="sec soft"><div class="wrap"><div class="frow rev">
 <div class="ftx"><span class="eyebrow t">La proximité, pas la masse</span><h2>Bien faire, <span class="hl">près de chez vous</span>.</h2>
 <p>On ne cherche pas à caler le plus de chantiers possible. On préfère <b>bien faire, localement</b>, avec des artisans qu'on peut regarder dans les yeux et dont on répond.</p>
-<p>Et vous n'avez qu'un seul interlocuteur — Diego — du premier rendez-vous à la remise des clés. Pas dix numéros à rappeler, pas de ballottage d'un service à l'autre.</p></div>
+<p>Et vous n'avez qu'un seul interlocuteur — Diego — du premier rendez-vous à la remise des clés. Pas dix numéros à rappeler, pas de services qui se renvoient la balle.</p></div>
 <div class="fimg"><img src="images/img-apropos2.webp" alt="Savoir-faire artisanal, travail à la main" loading="lazy"></div>
 </div></div></section>
 
@@ -339,7 +357,7 @@ p{margin:0}
 <p class="lead">Décrivez votre projet en quelques mots — on revient vers vous rapidement pour fixer le rendez-vous.</p>
 <a class="cphone" href="tel:+33637759206"><span class="g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 6 6L15 14l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 2 6a2 2 0 0 1 2-2Z"/></svg></span>06 37 75 92 06</a>
 <p class="cnote">Du lundi au samedi.</p></div>
-<div style="display:grid;place-items:center"><a class="btn g" href="/#contact" style="font-size:16px;padding:16px 30px">Décrire mon projet</a></div>
+<div class="cpromise"><div class="pr"><i>✓</i> Rendez-vous chez vous sous 7 jours</div><div class="pr"><i>✓</i> Devis clair et gratuit, sans engagement</div><div class="pr"><i>✓</i> Un seul interlocuteur, du début à la fin</div><a class="btn g" href="/#contact">Décrire mon projet</a></div>
 </div></section>
 <footer class="ft"><div class="wrap"><div class="top">
 <div><a class="logo" href="/"><span class="s">AC</span><span><b>Artisan de Confiance</b><span>Rénovation · Bouches-du-Rhône</span></span></a>
